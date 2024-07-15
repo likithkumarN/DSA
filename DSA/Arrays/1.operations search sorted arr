@@ -1,0 +1,65 @@
+The Code Explained
+1. Including Libraries
+cpp
+Copy code
+#include <bits/stdc++.h>
+using namespace std;
+This line includes all standard libraries in C++. bits/stdc++.h is a header file that includes every standard library, but it's not a good practice for larger programs as it can slow down compilation.
+2. The binarySearch Function
+cpp
+Copy code
+int binarySearch(int arr[], int low, int high, int key) 
+{
+    if (high < low)
+        return -1;
+    int mid = (low + high) / 2; /*low + (high - low)/2;*/
+    if (key == arr[mid])
+        return mid;
+    if (key > arr[mid])
+        return binarySearch(arr, (mid + 1), high, key);
+    return binarySearch(arr, low, (mid - 1), key);
+}
+arr[]: The array in which we're searching.
+low: The starting index of the portion of the array to search.
+high: The ending index of the portion of the array to search.
+key: The value we're searching for.
+Here's what happens inside the function:
+
+Base Case: If high is less than low, it means the search interval is empty, and the key is not in the array. Return -1 to indicate the key was not found.
+Calculate Mid: Calculate the middle index of the current search interval.
+Check Mid: If the key is equal to the middle element, return the mid index as the result.
+Search Right Half: If the key is greater than the middle element, search the right half of the array.
+Search Left Half: If the key is less than the middle element, search the left half of the array.
+3. The main Function
+cpp
+Copy code
+int main() 
+{
+    // Let us search 3 in below array
+    int arr[] = { 5, 6, 7, 8, 9, 10 };
+    int n, key;
+
+    n = sizeof(arr) / sizeof(arr[0]);
+    key = 10;
+
+    // Function call
+    cout << "Index: " << binarySearch(arr, 0, n - 1, key) << endl;
+    return 0;
+}
+Array Declaration: arr[] is the array in which we're searching.
+Array Size: n is the number of elements in the array. It's calculated by dividing the total size of the array by the size of one element.
+Key to Search: key is the value we're searching for, which is set to 10.
+Function Call: binarySearch(arr, 0, n - 1, key) calls the binary search function with the array, the start index 0, the end index n-1, and the key.
+Output
+The program prints the index of the key in the array. If the key is found, it prints the index. Otherwise, it prints -1.
+Example Run
+The array is {5, 6, 7, 8, 9, 10}.
+The key to search is 10.
+The binary search function will return 5 because 10 is at index 5 in the array.
+Visual Representation
+Initial array: {5, 6, 7, 8, 9, 10}
+Key to search: 10
+Midpoint calculation and comparisons:
+First mid: 7 (index 2) -> search right half
+Second mid: 9 (index 4) -> search right half
+Third mid: 10 (index 5) -> key found, return index 5.
