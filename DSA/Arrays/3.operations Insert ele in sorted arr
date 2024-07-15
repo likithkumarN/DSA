@@ -1,0 +1,80 @@
+Program Explanation
+This C++ program demonstrates how to insert a new element into a sorted array while maintaining the sorted order. Here's how it works:
+
+Include Headers and Using Namespace:
+
+cpp
+Copy code
+#include <bits/stdc++.h>
+using namespace std;
+#include <bits/stdc++.h> is a header file that includes almost every standard library in C++. It's useful for competitive programming but not recommended for large projects.
+using namespace std; allows us to use standard library functions and objects without prefixing them with std::.
+Function Definition - insertSorted:
+
+cpp
+Copy code
+int insertSorted(int arr[], int n, int key, int capacity) 
+{ 
+    if (n >= capacity) 
+        return n; 
+
+    int i; 
+    for (i = n - 1; (i >= 0 && arr[i] > key); i--) 
+        arr[i + 1] = arr[i]; 
+
+    arr[i + 1] = key; 
+
+    return (n + 1); 
+} 
+Parameters:
+arr[]: The array where the new element will be inserted.
+n: The current number of elements in the array.
+key: The element to be inserted.
+capacity: The maximum capacity of the array.
+Logic:
+First, it checks if there's enough space to insert the new element. If not, it returns the current size n.
+If there's space, it finds the correct position to insert the new element by shifting elements greater than the key to the right.
+Finally, it inserts the key at the correct position and returns the new size of the array.
+Driver Code - main Function:
+
+cpp
+Copy code
+int main() 
+{ 
+    int arr[20] = { 12, 16, 20, 40, 50, 70 }; 
+    int capacity = sizeof(arr) / sizeof(arr[0]); 
+    int n = 6; 
+    int i, key = 26; 
+
+    cout << "\nBefore Insertion: "; 
+    for (i = 0; i < n; i++) 
+        cout << arr[i] << " "; 
+
+    n = insertSorted(arr, n, key, capacity); 
+
+    cout << "\nAfter Insertion: "; 
+    for (i = 0; i < n; i++) 
+        cout << arr[i] << " "; 
+
+    return 0; 
+} 
+Array Initialization:
+arr[20] initializes an array with a capacity of 20 elements. The initial elements are {12, 16, 20, 40, 50, 70}.
+capacity calculates the total capacity of the array.
+n is set to 6, representing the number of initial elements.
+key is the element to be inserted, which is 26.
+Printing Before Insertion:
+The current elements of the array are printed.
+Insert Element:
+The insertSorted function is called to insert the key into the array.
+Printing After Insertion:
+The array is printed again to show the updated elements after insertion.
+Output
+Before the insertion, the array is: 12 16 20 40 50 70
+
+After inserting 26, the array becomes: 12 16 20 26 40 50 70
+
+Summary
+The program adds a new element (26) to a sorted array ({12, 16, 20, 40, 50, 70}) while maintaining the sorted order.
+It checks for capacity and then shifts elements to insert the new key.
+Finally, it prints the array before and after the insertion to show the result.
