@@ -1,0 +1,75 @@
+Key Points of Linear Search
+Linear search is a simple algorithm to find an element in an array.
+It checks each element of the array one by one until the key is found or the array ends.
+The Code Explained
+1. Including Libraries
+cpp
+Copy code
+#include <bits/stdc++.h>
+using namespace std;
+This line includes all standard libraries in C++. bits/stdc++.h is a header file that includes every standard library, but it's not recommended for larger programs as it can slow down compilation.
+2. The findElement Function
+cpp
+Copy code
+int findElement(int arr[], int n, int key)
+{
+    int i;
+    for (i = 0; i < n; i++)
+        if (arr[i] == key)
+            return i;
+    
+    // If the key is not found
+    return -1;
+}
+Parameters:
+arr[]: The array in which we're searching.
+n: The number of elements in the array.
+key: The value we're searching for.
+Here's what happens inside the function:
+
+Loop Through Array: The function iterates through each element of the array using a for loop.
+Check Each Element: For each element, it checks if the element is equal to the key.
+Return Index: If the key is found, it returns the current index.
+Key Not Found: If the loop completes and the key is not found, the function returns -1.
+3. The main Function
+cpp
+Copy code
+int main()
+{
+    int arr[] = { 12, 34, 10, 6, 40 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    // Using a last element as search element
+    int key = 40;
+
+    // Function call
+    int position = findElement(arr, n, key);
+
+    if (position == -1)
+        cout << "Element not found";
+    else
+        cout << "Element Found at Position: "
+            << position + 1;
+
+    return 0;
+}
+Array Declaration: arr[] is the array in which we're searching.
+Array Size: n is the number of elements in the array. It's calculated by dividing the total size of the array by the size of one element.
+Key to Search: key is the value we're searching for, which is set to 40.
+Function Call: findElement(arr, n, key) calls the linear search function with the array, its size, and the key.
+Check Result: The function returns the position of the key in the array. If the key is not found, it prints "Element not found". If the key is found, it prints the position of the element.
+Output
+For arr = {12, 34, 10, 6, 40} and key = 40:
+The linear search function will return 4 because 40 is at index 4 in the array.
+The program prints "Element Found at Position: 5" (index + 1 for human-readable format).
+Visual Representation
+Initial array: {12, 34, 10, 6, 40}
+Key to search: 40
+Loop through each element:
+12 (index 0) -> not equal to 40
+34 (index 1) -> not equal to 40
+10 (index 2) -> not equal to 40
+6 (index 3) -> not equal to 40
+40 (index 4) -> equal to 40
+Key found at index 4, print position 5 (index + 1).
+This is how the linear search algorithm works in the given C++ program.
